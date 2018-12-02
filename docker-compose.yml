@@ -1,0 +1,14 @@
+version: "3"
+services:
+  vault:
+    image: vault:1.0.0-beta2
+    command: "vault server -config=/vault/config/demo.hcl"
+    env_file:
+      - ./vault/vault.env
+    environment:
+      - VAULT_ADDR='http://127.0.0.1:8200'
+    ports:
+      - "8200:8200"
+    volumes:
+      - ./vault/config:/vault/config
+      - ./vault/file:/vault/file
